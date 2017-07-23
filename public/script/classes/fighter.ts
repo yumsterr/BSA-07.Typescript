@@ -9,17 +9,23 @@ export class Fighter implements IFighter{
     name:string;
     power:number;
     health:number;
+    fullHealth:number;
 
     constructor(name, power = 20, health = 200) {
         this.name = name;
         this.power = power;
         this.health = health;
+        this.fullHealth = health;
     }
 
-    hit(enemy, point) {
+    hit(enemy: Fighter, point) {
         let damage = point * this.power;
         enemy._setDamage(damage, this);
         return enemy.health;
+    }
+
+    restoreHealth(){
+        this.health = this.fullHealth;
     }
 
     private _setDamage(damage, enemy) {

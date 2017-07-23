@@ -14,12 +14,13 @@ module.exports = {
     },
     resolve: {
         extensions: [".ts", ".js"],
-        modules: [path.resolve('./src'), 'node_modules']
+        modules: [path.resolve('./public'), 'node_modules']
     },
     module: {
         loaders: [
             { test: /\.tsx?$/, loader: 'ts-loader' },
             { test: /\.html$/, loader: "html" },
+            { test: /\.css$/, use: ['style-loader', 'css-loader']},
         ]
     },
     devServer: {

@@ -1,11 +1,12 @@
-import { Fighter, ImprovedFighter, IFighter } from './fighter';
-import { getRandomInt } from './randomInt';
+import { Fighter, ImprovedFighter } from './fighter';
+import { getRandomInt } from './../randomInt';
 
 export class Fight {
     fighter: Fighter;
     improvedFighter: ImprovedFighter;
     continue: boolean;
     round: number = 0;
+    winner: Fighter;
 
     constructor(fighter, improvedFighter) {
         this.fighter = fighter;
@@ -23,10 +24,15 @@ export class Fight {
             enemyHealth = this.fighter.hit(this.improvedFighter, currentPoint);
         } else {
             currentFighter = this.improvedFighter;
-            enemyHealth = this.improvedFighter.doubleHit(this.fighter, currentPoint);
+            let critChance = getRandomInt(0, 10);
+            if (critChance >= 7) {
+                enemyHealth = this.improvedFighter.doubleHit(this.fighter, currentPoint);
+            } else {
+                enemyHealth = this.improvedFighter.hit(this.fighter, currentPoint);
+            }
         }
         if (enemyHealth <= 0) {
-            let winner = currentFighter;
+            this.winner = currentFighter;
             console.log(`${currentFighter.name} won at ${this.round} round`);
             this.continue = false;
             return true;

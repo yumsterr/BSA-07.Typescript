@@ -1,0 +1,13 @@
+input#points{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: #4495cc;
+    box-shadow: none;
+    border-style: solid;
+    padding: 0 5px;
+     outline: none;
+}
+input#points:focus{
+   border-color: #2d5b7a;
+}
