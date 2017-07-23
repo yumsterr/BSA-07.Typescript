@@ -38,7 +38,7 @@ startFighting.addEventListener('click', function () {
 
     dcFighter.restoreHealth();
     marvelFighter.restoreHealth();
-
+    marvelVSdc.round = 0;
     const pointsNum = getPointNums();
     if (pointsNum.length > 0) {
         marvelVSdc.fighting(pointsNum);

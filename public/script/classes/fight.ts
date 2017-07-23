@@ -3,6 +3,7 @@ import { getRandomInt } from './../randomInt';
 
 export interface IFight {
     winner: IFighter | IImprovedFighter;
+    round: number;
     fighting: (point: number[]) => boolean;
 }
 

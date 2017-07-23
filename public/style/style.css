@@ -28,7 +28,7 @@ button#start {
   display: block;
   margin: 20px auto;
   cursor: pointer;
-
+  outline: none;
 }
 
 button#start:hover {
