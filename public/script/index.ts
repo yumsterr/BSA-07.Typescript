@@ -3,6 +3,20 @@ import { Fighter, ImprovedFighter } from './classes/fighter';
 import { getRandomInt } from './randomInt';
 import './../style/style.css';
 
+let getPointNums = ():number[] => {
+    let points = pointInput.value;
+    points = points.replace(' ', '');
+    const pointsArr = points.split(',');
+    let pointsNum: number[] = [];
+    pointsArr.forEach(function (point) {
+        if (point.length && parseInt(point)) {
+            pointsNum.push(parseInt(point));
+        }
+    });
+    return pointsNum;
+}
+
+// let battleLog = document.querySelector('.battle-log');
 
 let marvelTeam = ['Captain America', 'Irpn Man', 'Thor', 'Hulk', 'Spider-Man'];
 let dcTeam = ['Superman', 'Batman', 'Wonder Woman', 'Green Lantern', 'Nightwing', 'Flash'];
@@ -25,16 +39,15 @@ startFighting.addEventListener('click', function () {
     dcFighter.restoreHealth();
     marvelFighter.restoreHealth();
 
-    let points = pointInput.value;
-    points = points.replace(' ', '');
-    const pointsArr = points.split(',');
-    let pointsNum:number[] = []; 
-    pointsArr.forEach(function (point) {
-        if(point.length && parseInt(point)){
-            pointsNum.push(parseInt(point));
-        }    
-    });
-
-    marvelVSdc.fighting(pointsNum);
-    console.log(pointsNum);
+    const pointsNum = getPointNums();
+    if (pointsNum.length > 0) {
+        marvelVSdc.fighting(pointsNum);
+    } else {
+        pointInput.classList.add('error');
+    }
+});
+pointInput.addEventListener('change', function(){
+    if(this.classList.contains('error')){
+        this.classList.remove('error');
+    }
 });

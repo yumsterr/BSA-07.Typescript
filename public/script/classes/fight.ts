@@ -1,12 +1,17 @@
-import { Fighter, ImprovedFighter } from './fighter';
+import { IFighter, IImprovedFighter } from './fighter';
 import { getRandomInt } from './../randomInt';
 
+export interface IFight {
+    winner: IFighter | IImprovedFighter;
+    fighting: (point: number[]) => boolean;
+}
+
 export class Fight {
-    fighter: Fighter;
-    improvedFighter: ImprovedFighter;
+    fighter: IFighter;
+    improvedFighter: IImprovedFighter;
     continue: boolean;
     round: number = 0;
-    winner: Fighter;
+    winner: IFighter | IImprovedFighter;
 
     constructor(fighter, improvedFighter) {
         this.fighter = fighter;
@@ -14,7 +19,7 @@ export class Fight {
     }
 
     fighting(point: number[]) {
-        let currentFighter: Fighter | ImprovedFighter;
+        let currentFighter: IFighter | IImprovedFighter;
         let pointID = getRandomInt(0, point.length);
         let currentPoint = point[pointID];
         let enemyHealth: number;

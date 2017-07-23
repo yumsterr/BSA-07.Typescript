@@ -31,6 +31,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Typescript Webpack Starter',
             template: '!!ejs-loader!public/index.html'
-        })
+        }),
     ]
 }
